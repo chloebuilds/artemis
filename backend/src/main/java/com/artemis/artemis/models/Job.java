@@ -35,6 +35,6 @@ public class Job {
 
     private Boolean archived;
 
-    private Integer saved;
+    private Iterable<Job> saved;
 
 }

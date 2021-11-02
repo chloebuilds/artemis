@@ -33,8 +33,8 @@ public class User {
 
     private String portfolio;
 
-    private Integer jobsApplied;
+    private Iterable<Job> jobsApplied;
 
-    private Integer jobsSaved;
+    private Iterable<Job> jobsSaved;
 
 }
