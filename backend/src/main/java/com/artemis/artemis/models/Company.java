@@ -3,8 +3,7 @@ package com.artemis.artemis.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -12,6 +11,8 @@ import javax.persistence.Table;
 @Table(name = "companies")
 public class Company {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate my keys for me and treat them as ids
     private Integer id;
 
     private String companyName;
@@ -28,6 +29,7 @@ public class Company {
 
     private String location;
 
-    private Iterable<User> applicants;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private Iterable<Job> jobPostings;
 
 }

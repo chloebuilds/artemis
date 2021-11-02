@@ -3,6 +3,7 @@ package com.artemis.artemis.models;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.validation.constraints.*;
 
 import javax.persistence.*;
@@ -33,8 +34,24 @@ public class User {
 
     private String portfolio;
 
+    @ManyToMany(cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH
+    })
+    @JoinTable(
+            name = "user_jobsapplied",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "job_id")}
+    )
     private Iterable<Job> jobsApplied;
 
+    @ManyToMany(cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH
+    })
+    @JoinTable(
+            name = "user_jobssaved",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "job_id")}
+    )
     private Iterable<Job> jobsSaved;
 
 }

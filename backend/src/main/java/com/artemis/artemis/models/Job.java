@@ -3,8 +3,7 @@ package com.artemis.artemis.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Getter
@@ -13,9 +12,17 @@ import javax.persistence.Table;
 @Table(name = "jobs")
 public class Job {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String jobTitle;
 
-    private String company;
+    @ManyToOne(cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH
+    })
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     private String location;
 
@@ -35,6 +42,14 @@ public class Job {
 
     private Boolean archived;
 
-    private Iterable<Job> saved;
+    @ManyToMany(cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH
+    })
+    @JoinTable(
+            name = "user_jobsapplied",
+            joinColumns = {@JoinColumn(name = "job_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private Iterable<User> applicants;
 
 }
