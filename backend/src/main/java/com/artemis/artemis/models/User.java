@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,14 +25,19 @@ public class User {
     @NotNull
     private String username;
 
+    @Column
     private String email;
 
+    @Column
     private String password;
 
+    @Column
     private String linkedin;
 
+    @Column
     private String github;
 
+    @Column
     private String portfolio;
 
     @ManyToMany(cascade = {
@@ -42,7 +48,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "job_id")}
     )
-    private Iterable<Job> jobsApplied;
+    private List<Job> jobsApplied;
 
     @ManyToMany(cascade = {
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH
@@ -52,6 +58,6 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "job_id")}
     )
-    private Iterable<Job> jobsSaved;
+    private List<Job> jobsSaved;
 
 }

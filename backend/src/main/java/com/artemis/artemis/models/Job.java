@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
@@ -25,22 +26,31 @@ public class Job {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @Column
     private String location;
 
+    @Column
     private String workType;
 
+    @Column
     private String jobDescription;
 
+    @Column
     private String salaryRange;
 
+    @Column
     private String experienceLevel;
 
+    @Column
     private String techStack;
 
+    @Column
     private String requirements;
 
+    @Column
     private String postDate;
 
+    @Column
     private Boolean archived;
 
     @ManyToMany(cascade = {
@@ -51,6 +61,6 @@ public class Job {
             joinColumns = {@JoinColumn(name = "job_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
-    private Iterable<User> applicants;
+    private List<User> applicants;
 
 }
