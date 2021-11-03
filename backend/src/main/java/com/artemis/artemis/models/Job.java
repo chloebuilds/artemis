@@ -16,6 +16,7 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "job_title")
     private String jobTitle;
 
     @ManyToOne(cascade = {

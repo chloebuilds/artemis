@@ -45,7 +45,7 @@ public class UserService {
         userToUpdate.setPassword(user.getPassword());
         userToUpdate.setLinkedin(user.getLinkedin());
         userToUpdate.setGithub(user.getGithub());
-        userToUpdate.setPortfolio(userToUpdate.getPortfolio());
+        userToUpdate.setPortfolio(user.getPortfolio());
         return userRepo.save(userToUpdate);
     }
 }
